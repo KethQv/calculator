@@ -54,3 +54,29 @@ body {
     justify-content: center;
     border: solid 1px black;
 }
+
+.calculator__screen {
+    position: relative;
+}
+
+.calculator__operation, .calculator__result {
+    position: absolute;
+    display: flex;
+    justify-content: end;
+    /* border: solid 1px black; */
+}
+
+.calculator__operation {
+    width: 98%;
+    height: 35%;
+    top: 5px;
+    line-height: 24.5px;
+}
+
+.calculator__result {
+    width: 98%;
+    height: 50%;
+    bottom: 4px;
+    font-size: 30px;
+    line-height: 40px;
+}

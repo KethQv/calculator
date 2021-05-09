@@ -1,11 +1,17 @@
+// array with all the operations
+let operationString = '';
+let operationArray = [];
+
 // getting the nodes
 const screen = document.querySelector('.calculator__screen');
+const screenOperation = document.querySelector('.calculator__operation');
+const screenResult = document.querySelector('.calculator__result');
 const clearBtn = document.querySelector('.calculator__clear');
 
 const divideBtn = document.querySelector('.calculator__divide');
 const multiplyBtn = document.querySelector('.calculator__multiply');
-const substractBtn = document.querySelector('.calculator__substract')
-const addBtn = document.querySelector('.calculator__add')
+const substractBtn = document.querySelector('.calculator__substract');
+const addBtn = document.querySelector('.calculator__add');
 
 const equalBtn = document.querySelector('.calculator__equal');
 const dotBtn = document.querySelector('.calculator__dot');
@@ -15,35 +21,29 @@ const numberBtn = document.querySelectorAll('.number');
 console.table(numberBtn);
 
 // main functions
-function add(numArray) {
-    const total = numArray.reduce((total, num) => {
-        return total += num;
-    }, 0);
-    return total;
+function add(a, b) {
+    return a + b;
 }
 
 function substract(numArray) {
-    const total = numArray.reduce((total, num) => {
-        return total -= num;
-    }, numArray[0] * 2);
-    return total;
+    return a - b;
 }
 
 function multiply(numArray) {
-    const total = numArray.reduce((total, num) => {
-        return total *= num;
-    }, 1);
-    return total;
+    return a * b;
 }
 
 function divide(numArray) {
-    const total = numArray.reduce((total, num) => {
-        return total /= num;
-    }, numArray[0] * numArray[0]);
-    return total;
+    return a / b;
 }
 
 function operate(a, b, operation) {
-    return operation([a, b]);
+    return operation(a, b);
 }
 
+numberBtn.forEach((button) => {
+    button.addEventListener('click', () => {
+        operationString += button.textContent;
+        screenOperation.textContent = operationString;
+    });
+});
