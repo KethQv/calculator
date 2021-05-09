@@ -25,3 +25,7 @@ function divide(numArray) {
     }, numArray[0] * numArray[0]);
     return total;
 }
+
+function operate(a, b, operation) {
+    return operation([a, b]);
+}

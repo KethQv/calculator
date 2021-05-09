@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(to bottom right, rgb(151, 81, 203), rgb(252, 133, 111));
+}
+
+.calculator {
+    outline: dotted;
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(4, 70px);
+    grid-template-rows: repeat(6, 70px);
+    grid-template-areas: 
+        "screen  screen  screen screen"
+        "nothing nothing clear  divide"
+        "seven   eight   nine   multiply"
+        "four    five    six    substract"
+        "one     two     three  add"
+        "zero    dot     equal  equal";
+}
+
+
+/*  grid areas assignation  */
+.calculator__screen    { grid-area: screen;    }
+.calculator__clear     { grid-area: clear;     }
+.calculator__add       { grid-area: add;       }
+.calculator__substract { grid-area: substract; }
+.calculator__multiply  { grid-area: multiply;  }
+.calculator__divide    { grid-area: divide;    }
+.calculator__1         { grid-area: one;       }
+.calculator__2         { grid-area: two;       }
+.calculator__3         { grid-area: three;     }
+.calculator__4         { grid-area: four;      }
+.calculator__5         { grid-area: five;      }
+.calculator__6         { grid-area: six;       }
+.calculator__7         { grid-area: seven;     }
+.calculator__8         { grid-area: eight;     }
+.calculator__9         { grid-area: nine;      }
+.calculator__0         { grid-area: zero;      }
+.calculator__dot       { grid-area: dot;       }
+.calculator__equal     { grid-area: equal;     }
+
+
