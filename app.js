@@ -44,6 +44,26 @@ function add(a, b) {
     return a + b;
 }
 
+function resultHasADot(result) {
+    let stringResult = result.toString();;
+    for (let i = 0; i < stringResult.length; i++) {
+        if (stringResult.charAt(i) == '.') {
+            return true;
+        }
+    }
+    return false;
+}
+
+function roundResult(result) {
+    let stringResult = result.toString();
+    let floatResult = parseFloat(result);
+
+    if (stringResult.length > 6) {
+        return floatResult.toFixed(6);
+    }
+    return result;
+}
+
 function operate(a, b, operation) {
     return operation(a, b);
 }
@@ -108,11 +128,16 @@ function evaluateOperation() {
 
     if (operationArray.length == 1) {
         if (!isNaN(operationArray[0])) {
+
+            if (resultHasADot(operationArray[0])) { // this is to round the number to 6 decimals if it is large than 6
+                let roundedResult = roundResult(operationArray[0]);
+                displayResult(roundedResult);
+                return;
+            }
             displayResult(operationArray[0]);
         }
         return;
     }
-
     evaluateOperation();
 }
 
