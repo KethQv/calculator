@@ -13,6 +13,7 @@ const screen = document.querySelector('.calculator__screen');
 const screenOperation = document.querySelector('.calculator__operation');
 const screenResult = document.querySelector('.calculator__result');
 const clearBtn = document.querySelector('.calculator__clear');
+const backBtn = document.querySelector('.calculator__back');
 
 const equalBtn = document.querySelector('.calculator__equal');
 const dotBtn = document.querySelector('.calculator__dot');
@@ -52,8 +53,6 @@ function displayOperation(content) {
     screenOperation.textContent = operationString;
     operationArray = operationString.split(' ');
     evaluateOperation();
-
-    // evaluateOperation();
 }
 
 function displayResult(result) {
@@ -142,8 +141,32 @@ equalBtn.onclick = () => {
     displayOperation(previousResult);
     onlyOperationAfterEqual = true;
     operationBtnAlreadyPressed = false;
-    // operationArray = operationString.split(' ');
-    // evaluateOperation();
+};
+
+backBtn.onclick = () => {
+    let newOperationString;
+    let lastestChar;
+
+    lastestChar = operationString.slice(-1);
+
+    if(lastestChar == ' ') {
+        // again without the space
+        operationString = operationString.slice(0, -1);
+        lastestChar = operationString.slice(-1); 
+    }
+
+    if (lastestChar == '.') { 
+        dotBtnAlreadyPressed = false; 
+    }
+    if (lastestChar == '/' || lastestChar == '*' || lastestChar == '-' || lastestChar == '+') { 
+        operationBtnAlreadyPressed = false; 
+        operationString = operationString.slice(0, -1); // to remove the ' ' space before the operation char
+    }
+
+    newOperationString = operationString.slice(0, -1);
+    clearBtn.onclick();
+    
+    displayOperation(newOperationString);
 };
 
 clearBtn.onclick = () => {
