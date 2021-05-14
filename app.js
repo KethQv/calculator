@@ -159,13 +159,17 @@ backBtn.onclick = () => {
         dotBtnAlreadyPressed = false; 
     }
     if (lastestChar == '/' || lastestChar == '*' || lastestChar == '-' || lastestChar == '+') { 
-        operationBtnAlreadyPressed = false; 
         operationString = operationString.slice(0, -1); // to remove the ' ' space before the operation char
     }
-
+    
     newOperationString = operationString.slice(0, -1);
     clearBtn.onclick();
     
+    if (newOperationString.slice(-1) == ' ') {
+         // unable to press an operation btn again if the last char is a blank space (that means that before the blank space is an operation char)
+        operationBtnAlreadyPressed = true;
+    }
+
     displayOperation(newOperationString);
 };
 
