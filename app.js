@@ -2,9 +2,11 @@ let operationString = '';
 let operationArray = [];
 
 let operationResult = '';
+let previousResult = '';
 
 let dotBtnAlreadyPressed = false;
 let operationBtnAlreadyPressed = false;
+let onlyOperationAfterEqual = false;
 
 // getting the nodes
 const screen = document.querySelector('.calculator__screen');
@@ -118,21 +120,30 @@ function evaluateOperation() {
 // event listeners
 numberBtn.forEach((button) => {
     button.addEventListener('click', () => {
-        displayOperation(button.textContent);
-        operationBtnAlreadyPressed = false;
+        if (!onlyOperationAfterEqual) {
+            displayOperation(button.textContent);
+            operationBtnAlreadyPressed = false;
+            onlyOperationAfterEqual = false;
+        }
     });
 });
 
 dotBtn.onclick = () => {
-    if (operationString.charAt(operationString.length-1) != '.' && !dotBtnAlreadyPressed) {
+    if (operationString.charAt(operationString.length-1) != '.' && !dotBtnAlreadyPressed && !onlyOperationAfterEqual) {
         displayOperation(dotBtn.textContent);
         dotBtnAlreadyPressed = true;
+        onlyOperationAfterEqual = false;
     }
 };
 
 equalBtn.onclick = () => {
-    operationArray = operationString.split(' ');
-    evaluateOperation();
+    previousResult = screenResult.textContent;
+    clearBtn.onclick();
+    displayOperation(previousResult);
+    onlyOperationAfterEqual = true;
+    operationBtnAlreadyPressed = false;
+    // operationArray = operationString.split(' ');
+    // evaluateOperation();
 };
 
 clearBtn.onclick = () => {
@@ -142,6 +153,7 @@ clearBtn.onclick = () => {
     operationArray = [];
     displayResult();
 
+    onlyOperationAfterEqual = false;
     operationBtnAlreadyPressed = false;
     dotBtnAlreadyPressed = false;
 };
@@ -152,6 +164,7 @@ operations.map((operation) => {
             displayOperation(` ${operation.symbol} `);
             operationBtnAlreadyPressed = true;
             dotBtnAlreadyPressed = false;
+            onlyOperationAfterEqual = false;
         } 
     });
 });
