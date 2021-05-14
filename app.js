@@ -1,6 +1,6 @@
-// array with all the operations
 let operationString = '';
 let operationArray = [];
+
 let operationResult = '';
 
 let dotBtnAlreadyPressed = false;
@@ -48,6 +48,8 @@ function operate(a, b, operation) {
 function displayOperation(content) {
     operationString += content;
     screenOperation.textContent = operationString;
+    operationArray = operationString.split(' ');
+    evaluateOperation();
 
     // evaluateOperation();
 }
@@ -104,7 +106,9 @@ function evaluateOperation() {
     }
 
     if (operationArray.length == 1) {
-        displayResult(operationArray[0]);
+        if (!isNaN(operationArray[0])) {
+            displayResult(operationArray[0]);
+        }
         return;
     }
 
