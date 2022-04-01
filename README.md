@@ -2,7 +2,7 @@
 
 Currently on working... 🛠
 
-Take a look here: https://kethqv.github.io/calculator/ 
+Take a look here: https://cin4ed.github.io/calculator/
 
 New things I learned doing this:
 * How to use CSS Grid template areas ✅
